@@ -21,11 +21,15 @@ export class BooksService {
     this.persistFavorites()
   }
 
-  removeFavorite(bookId: any) {
-    this.setFavorites(this.favorites.filter(book => book.key != bookId))
+  removeFavorite(key: any) {
+    this.setFavorites(this.favorites.filter(book => book.key != key))
   }
 
   persistFavorites() {
     localStorage.setItem('favorites', JSON.stringify(this.favorites))
+  }
+
+  isFavorite(key: string) {
+    return this.favorites.find(book => book.key == key) !== undefined
   }
 }

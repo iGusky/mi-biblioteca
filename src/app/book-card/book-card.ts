@@ -9,6 +9,7 @@ import { BooksService } from '../books-service';
 })
 export class BookCard {
   @Input() book!: {
+    key: string;
     title: string;
     author_name: string[];
     cover_edition_key: string;
@@ -30,5 +31,13 @@ export class BookCard {
 
   saveToFavorite(book:any) {
       this.booksService.setFavorite(book)
+  }
+
+  removeToFavorite(key:any) {
+      this.booksService.removeFavorite(key)
+  }
+
+  isAddedToFavorite(key: string) {
+    return this.booksService.isFavorite(key)
   }
 }

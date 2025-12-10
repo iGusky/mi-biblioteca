@@ -9,8 +9,15 @@
     <p class="text-gray-700">
       {{ authorsText }}
     </p>
-    <button class="h-8 w-8 bg-red-400 rounded-4xl cursor-pointer" (click)="saveToFavorite(book)">
-      <img src="favorite.svg" class="m-auto" height="16" width="16">
-    </button>
+    @if(isAddedToFavorite(book.key))
+    {
+      <button class="h-8 w-8 bg-red-400 rounded-4xl cursor-pointer" (click)="removeToFavorite(book.key)">
+        <img src="remove-favorite.svg" class="m-auto" height="16" width="16">
+      </button>
+    } @else {
+      <button class="h-8 w-8 bg-red-400 rounded-4xl cursor-pointer" (click)="saveToFavorite(book)">
+        <img src="favorite.svg" class="m-auto" height="16" width="16">
+      </button>
+    }
   </div>
 </div>
