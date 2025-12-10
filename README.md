@@ -43,11 +43,21 @@ Los libros tienen la siguiente estructura:
 - `key` identificador del libro en OpenLibrary API.
 - `title` título del libro.
 
+## Estado y navegación
+- El cambio entre las dos rutas se hace a travez de dos etiquetas `a` con texto descriptivo en color azul y subrayado.
+- Decidí utilizar un servicio central con el que pudiera realizar facilmente operaciones entre los diferentes componentes.
+- Estoy guardando en la estanteria todo el objeto del libro (titulo, autores, key, portada) para no tener que realizar consultar alternativas.
+
 ## Desiciones técnicas
 - Para la persistencia de los datos decidí realizarla con `localStorage` para que la implementación fuera rápida.
-- Estoy guardando en la estanteria todo el objeto del libro (titulo, autores, key, portada) para no tener que realizar consultar alternativas.
+
 - No logré encontra como es que OpenLibrary API retorna elementos de la paginación. Es posible hacerla de manera local (operando sobre la totalidad de documentos encontrados).
-- Decidí utilizar un servicio central con el que pudiera realizar facilmente operaciones entre los diferentes componentes.
+
+## Escalabilidad, mantenimiento y siguientes pasos
+- Revisar si la implementación de `computed` es la correcta para el caso del loadingState.
+- Implementar una vista de cada libro con más detalle.
+- Agregar paginación local de ser necesario o agregar una paginación simple: "siguiente-anterior".
+- Buscar imagenes alternativas (thumbnails) para reducir el consumo de datos al cargar los libros dado que actualmente es muy grande y realentiza la carga.
 
 
 ## Desarrollo
@@ -84,7 +94,7 @@ El build del proyecto se genera en `dist/my-library/browser`. Esa ruta se debe c
   - Cambié la forma en la que se visualizan los datos y la sintaxis del ngFor por un @for.
 - Riesgos detectados
   - Uno de los riesgos que detecto en el código es que puede haber una reducción de performance al momento de cargar las imágenes.
-  - Un área de mejora podría ser el agregar estados de carga para las mismas o ver si existen tumbnails mas livianos.
+  - Un área de mejora podría ser el agregar estados de carga para las mismas o ver si existen thumbnails mas livianos.
 - Breve resumen de los prompts.
   - A grandes rasgos, le solicité a ChatGpt que inicializara un proyecto con ciertas tecnologías en concreto (para estar actualizados y en sintonia).
   - Le solicité implementar tailwind pero el mismo cli de angular lo implementa por lo tanto omití esa parte.
