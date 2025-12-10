@@ -1,0 +1,16 @@
+<div class="p-4 border rounded shadow bg-white max-w-sm">
+  <img [src]="imageUrl" alt="Portada del libro" class="w-full h-48 object-cover rounded mb-4 bg-slate-100" />
+
+  <h2 class="text-xl font-semibold mb-2 line-clamp-1">
+    {{ book.title }}
+  </h2>
+
+  <div class="flex flex-row justify-between items-center">
+    <p class="text-gray-700">
+      {{ authorsText }}
+    </p>
+    <button class="h-8 w-8 bg-red-400 rounded-4xl cursor-pointer">
+      <img src="favorite.svg" class="m-auto" height="16" width="16">
+    </button>
+  </div>
+</div>
