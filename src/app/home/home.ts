@@ -10,7 +10,6 @@ import { BooksService } from '../books-service';
   styleUrl: './home.css',
 })
 export class Home {
-
   private booksService = inject(BooksService)
   books = computed(() => this.booksService.books());
 }

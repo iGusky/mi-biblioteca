@@ -11,7 +11,7 @@
     </p>
     @if(isAddedToFavorite(book.key))
     {
-      <button class="h-8 w-8 bg-red-400 rounded-4xl cursor-pointer" (click)="removeToFavorite(book.key)">
+      <button class="h-8 w-8 bg-orange-400 rounded-4xl cursor-pointer" (click)="removeToFavorite(book.key)">
         <img src="remove-favorite.svg" class="m-auto" height="16" width="16">
       </button>
     } @else {
