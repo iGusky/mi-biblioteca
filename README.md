@@ -22,7 +22,32 @@ Se decidió utilizar localstorage para una implementación rápida.
   - `BookCard` Muestra la información de un libro.
   - `Home` Pantalla inicial de la aplicación, aquí se realiza la búsqueda de libros con la api.
   - `Favorites` Pantalla donde se listan los libros marcados como favoritos (estanteria).
+- Dependencias
+  - `axios`
 
+
+## Modelo de datos
+Los libros tienen la siguiente estructura:
+```json
+  {
+    "author_name": [
+        "Matthew Woodring Stover"
+    ],
+    "cover_edition_key": "OL24381693M",
+    "key": "/works/OL2727030W",
+    "title": "Star Wars Episode III - Revenge of the Sith"
+  }
+```
+- `author_name` arreglo de autores involucrados en el libro.
+- `cover_edition_key` key que me permite obtener la portada del libro.
+- `key` identificador del libro en OpenLibrary API.
+- `title` título del libro.
+
+## Desiciones técnicas
+- Para la persistencia de los datos decidí realizarla con `localStorage` para que la implementación fuera rápida.
+- Estoy guardando en la estanteria todo el objeto del libro (titulo, autores, key, portada) para no tener que realizar consultar alternativas.
+- No logré encontra como es que OpenLibrary API retorna elementos de la paginación. Es posible hacerla de manera local (operando sobre la totalidad de documentos encontrados).
+- Decidí utilizar un servicio central con el que pudiera realizar facilmente operaciones entre los diferentes componentes.
 
 
 ## Desarrollo
