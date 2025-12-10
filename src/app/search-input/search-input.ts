@@ -29,6 +29,7 @@ export class SearchInput {
     if (!query.trim()) return;
 
     try {
+      this.booksService.setLoading(true)
       const res = await axios.get('https://openlibrary.org/search.json', {
         params: { q: query, fields: "key,title,author_name,cover_edition_key", limit: 12, page: 1 },
       });
@@ -36,6 +37,8 @@ export class SearchInput {
       console.log('Respuesta:', res.data);
     } catch (err) {
       console.error('Error en la petición:', err);
+    } finally {
+       this.booksService.setLoading(false)
     }
   }
 }

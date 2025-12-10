@@ -6,6 +6,7 @@ import { Injectable, signal } from '@angular/core';
 export class BooksService {
   books = signal<any[]>([]);
   favorites = signal<any[]>(JSON.parse(localStorage.getItem('favorites') || '[]') || [])
+  loading = signal<boolean>(false)
 
   setBooks(data: any[]) {
     this.books.set(data);
@@ -31,5 +32,9 @@ export class BooksService {
 
   isFavorite(key: string) {
     return this.favorites().find(book => book.key == key) !== undefined
+  }
+
+  setLoading(v: boolean) {
+    this.loading.set(v)
   }
 }

@@ -12,4 +12,5 @@ import { BooksService } from '../books-service';
 export class Home {
   private booksService = inject(BooksService)
   books = computed(() => this.booksService.books());
+  loading = computed(() => this.booksService.loading());
 }

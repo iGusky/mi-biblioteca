@@ -17,9 +17,15 @@
   </div>
   }
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-    @for (book of books(); track $index) {
-      <app-book-card [book]="book" />
-    }
-  </div>
+  @if(loading()) {
+     <span class="loader mt-8"></span>
+  } @else {
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+      @for (book of books(); track $index) {
+        <app-book-card [book]="book" />
+      }
+    </div>
+  }
+
+
 </div>
