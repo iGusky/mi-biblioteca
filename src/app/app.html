@@ -1,10 +1,16 @@
 
-<div class="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
-  <h1 class="text-3xl font-semibold mb-8">
-    Bienvenido
-  </h1>
+<div class="min-h-screen flex flex-col items-center bg-gray-100 p-6">
+  <div class="mb-4 text-center">
+    <h1 class="text-3xl font-semibold">
+      Bienvenido
+    </h1>
+    <p class="text-slate-500">
+      Busca y guarda todos aquellos libros que llamen tu atención, puedes ver tus libros guardados en mis favoritos.
+    </p>
+  </div>
 
   <app-search-input></app-search-input>
+
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
   @for (book of books(); track $index) {
     <app-book-card [book]="book"/>

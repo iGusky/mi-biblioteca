@@ -30,7 +30,7 @@ export class SearchInput {
 
     try {
       const res = await axios.get('https://openlibrary.org/search.json', {
-        params: { q: query, fields: "key,title,author_name,cover_edition_key", order: 'rating', limit: 12, page: 1 },
+        params: { q: query, fields: "key,title,author_name,cover_edition_key", limit: 12, page: 1 },
       });
       this.booksService.setBooks(res.data.docs)
       console.log('Respuesta:', res.data);

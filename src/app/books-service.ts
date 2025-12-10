@@ -5,8 +5,27 @@ import { Injectable, signal } from '@angular/core';
 })
 export class BooksService {
   books = signal<any[]>([]);
+  favorites: any[] = JSON.parse(localStorage.getItem('favorites') || '[]');
 
-   setBooks(data: any[]) {
+  setBooks(data: any[]) {
     this.books.set(data);
+  }
+
+  setFavorite(book: any) {
+    this.favorites.push(book)
+    this.persistFavorites()
+  }
+
+  setFavorites(books: any[]) {
+    this.favorites = books
+    this.persistFavorites()
+  }
+
+  removeFavorite(bookId: any) {
+    this.setFavorites(this.favorites.filter(book => book.key != bookId))
+  }
+
+  persistFavorites() {
+    localStorage.setItem('favorites', JSON.stringify(this.favorites))
   }
 }
