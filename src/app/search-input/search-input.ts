@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { debounceTime, Subject } from 'rxjs';
 import { BooksService } from '../books-service';
@@ -9,7 +9,7 @@ import { BooksService } from '../books-service';
   templateUrl: './search-input.html',
   styleUrl: './search-input.css',
 })
-export class SearchInput {
+export class SearchInput implements OnInit {
   private input$ = new Subject<string>();
 
   constructor(private booksService: BooksService) {
@@ -25,9 +25,30 @@ export class SearchInput {
     this.input$.next(value);
   }
 
+  ngOnInit() {
+    this.searchTop100()
+  }
+
+  async searchTop100() {
+    try {
+      this.booksService.setLoading(true)
+      const res = await axios.get('https://openlibrary.org/subjects/accessible_book.json', {
+        params: {
+          limit: 100
+        }
+      })
+      this.booksService.setBooks(res.data.works)
+    } catch (err) {
+
+    } finally {
+      this.booksService.setLoading(false)
+    }
+
+  }
+
+
   async makeRequest(query: string) {
     if (!query.trim()) return;
-
     try {
       this.booksService.setLoading(true)
       const res = await axios.get('https://openlibrary.org/search.json', {
