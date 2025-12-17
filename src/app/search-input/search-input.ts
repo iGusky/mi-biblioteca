@@ -39,7 +39,7 @@ export class SearchInput implements OnInit {
       })
       this.booksService.setBooks(res.data.works)
     } catch (err) {
-
+      console.error('Error en la petición:', err);
     } finally {
       this.booksService.setLoading(false)
     }
